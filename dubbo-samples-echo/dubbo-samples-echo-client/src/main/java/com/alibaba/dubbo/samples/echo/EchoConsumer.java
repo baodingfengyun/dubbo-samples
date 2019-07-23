@@ -30,7 +30,10 @@ public class EchoConsumer {
         context.start();
         EchoService echoService = (EchoService) context.getBean("echoService"); // get remote service proxy
 
-        String status = echoService.echo("Hello world!");
-        System.out.println("echo result: " + status);
+        for (int i = 0; i < 100; i++) {
+            long start = System.currentTimeMillis();
+            String status = echoService.echo("Hello Dubbo!");
+            System.out.println("echo result: " + status + ", cost(ms):" + (System.currentTimeMillis() - start));
+        }
     }
 }

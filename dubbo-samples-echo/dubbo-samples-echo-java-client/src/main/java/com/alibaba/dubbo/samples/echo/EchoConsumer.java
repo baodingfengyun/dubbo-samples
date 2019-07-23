@@ -19,7 +19,10 @@ public class EchoConsumer {
         reference.setInterface(EchoService.class);
         // #4 创建远程连接并做动态代理转换
         EchoService greetingsService = reference.get();
-        String message = greetingsService.echo("Hello world!");
-        System.out.println(message);
+        for (int i = 0; i < 100; i++) {
+            long start = System.currentTimeMillis();
+            String message = greetingsService.echo("Hello Dubbo!");
+            System.out.println(message + " cost(ms): " + (System.currentTimeMillis() - start));
+        }
     }
 }

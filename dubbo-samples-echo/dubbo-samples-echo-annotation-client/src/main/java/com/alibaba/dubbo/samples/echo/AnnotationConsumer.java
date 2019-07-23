@@ -22,8 +22,11 @@ public class AnnotationConsumer {
         context.start();
         // #2 发起服务调用
         EchoConsumer echoService = context.getBean(EchoConsumer.class);
-        String hello = echoService.echo("Hello world!");
-        System.out.println("result: " + hello);
+        for (int i = 0; i < 100; i++) {
+            long start = System.currentTimeMillis();
+            String hello = echoService.echo("Hello world!");
+            System.out.println("result: " + hello + " cost(ms): " + (System.currentTimeMillis() - start));
+        }
     }
 
     @Configuration
